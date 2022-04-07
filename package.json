@@ -1,0 +1,15 @@
+{
+  "name": "meintenpureto",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "repository": "https://github.com/totaku/meintenpureto.git",
+  "author": "Totaku <banana@3lf.ru>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
