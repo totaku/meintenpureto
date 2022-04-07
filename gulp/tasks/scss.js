@@ -32,7 +32,25 @@ export const scss = () => {
         }))
         .pipe(shorthand())
         .pipe(app.gulp.dest(app.path.build.css))
-        .pipe(cleanCss())
+        .pipe(cleanCss(
+            {
+                compatibility: 'ie8', level: {
+                    1: {
+                        specialComments: 0,
+                        removeEmpty: true,
+                        removeWhitespace: true
+                    },
+                    2: {
+                        mergeMedia: true,
+                        removeEmpty: true,
+                        removeDuplicateFontRules: true,
+                        removeDuplicateMediaBlocks: true,
+                        removeDuplicateRules: true,
+                        removeUnusedAtRules: false
+                    }
+                }
+            }
+        ))
         .pipe(rename({ suffix: '.min' }))
         .pipe(app.gulp.dest(app.path.build.css, {sourcemaps: '.'}))
         .pipe(app.plugins.browserSync.stream());
