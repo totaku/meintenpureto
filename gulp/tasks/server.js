@@ -5,6 +5,7 @@ export const server = (done) => {
         open: true,
         cors: true,
         browser: "FirefoxDeveloperEdition",
-        port: 3000
+        port: 3000,
+        // tunnel: true
     });
 }
