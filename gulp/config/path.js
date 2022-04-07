@@ -8,16 +8,19 @@ export const path = {
     build: {
         html: buildFolder,
         css: buildFolder + '/css/',
+        js: buildFolder + '/js/',
         files: buildFolder + '/files/',
     },
     src: {
         html: srcFolder + '/*.html',
         scss: srcFolder + '/scss/style.scss',
+        js: srcFolder + '/js/app.js',
         files: srcFolder + '/files/**/*.*',
     },
     watch: {
         html: srcFolder + '/**/*.html',
         scss: srcFolder + '/scss/**/*.scss',
+        js: srcFolder + '/js/**/*.js',
         files: srcFolder + '/files/**/*.*',
     },
     clean: buildFolder,
