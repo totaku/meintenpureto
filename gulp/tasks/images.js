@@ -10,11 +10,11 @@ export const images = () => {
             }))
         )
         .pipe(app.plugins.newer(app.path.build.images))
-        .pipe(webp())
-        .pipe(app.gulp.dest(app.path.build.images))
-        .pipe(app.gulp.src(app.path.src.images))
-        .pipe(app.plugins.newer(app.path.build.images))
-        .pipe(imagemin([
+        .pipe(app.plugins.if(app.isBuild, webp()))
+        .pipe(app.plugins.if(app.isBuild, app.gulp.dest(app.path.build.images)))
+        .pipe(app.plugins.if(app.isBuild, app.gulp.src(app.path.src.images)))
+        .pipe(app.plugins.if(app.isBuild, app.plugins.newer(app.path.build.images)))
+        .pipe(app.plugins.if(app.isBuild, imagemin([
             imagemin.gifsicle({
                 interlaced: true
             }),
@@ -38,7 +38,7 @@ export const images = () => {
                     { collapseGroups: true }
                 ]
             })
-        ]))
+        ])))
         .pipe(app.gulp.dest(app.path.build.images))
         .pipe(app.plugins.browserSync.stream());
 }

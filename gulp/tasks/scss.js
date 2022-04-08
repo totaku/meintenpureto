@@ -10,7 +10,7 @@ import groupCssMediaQueries from 'gulp-group-css-media-queries';
 const sass = gulpSass(dartSass);
 
 export const scss = () => {
-    return app.gulp.src(app.path.src.scss, {sourcemaps: true})
+    return app.gulp.src(app.path.src.scss, {sourcemaps: app.isDev})
         .pipe(app.plugins.plumber(
             app.plugins.notify.onError({
                 title: 'SCSS',
@@ -21,18 +21,18 @@ export const scss = () => {
         .pipe(sass({
             outputStyle: 'expanded'
         }))
-        .pipe(groupCssMediaQueries())
-        .pipe(webpCss({
+        .pipe(app.plugins.if(app.isBuild, groupCssMediaQueries()))
+        .pipe(app.plugins.if(app.isBuild, webpCss({
             webpClass: '.webp',
             noWebpClass: '.no-webp'
-        }))
-        .pipe(autoPrefixer({
+        })))
+        .pipe(app.plugins.if(app.isBuild, autoPrefixer({
             grid: true,
             cascade: true
-        }))
+        })))
         .pipe(shorthand())
         .pipe(app.gulp.dest(app.path.build.css))
-        .pipe(cleanCss(
+        .pipe(app.plugins.if(app.isBuild, cleanCss(
             {
                 compatibility: 'ie8', level: {
                     1: {
@@ -50,7 +50,7 @@ export const scss = () => {
                     }
                 }
             }
-        ))
+        )))
         .pipe(rename({ suffix: '.min' }))
         .pipe(app.gulp.dest(app.path.build.css, {sourcemaps: '.'}))
         .pipe(app.plugins.browserSync.stream());
