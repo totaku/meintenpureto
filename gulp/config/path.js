@@ -5,7 +5,7 @@ export const path = {
     root: pathDest,
     build: {
         views: pathDest,
-        styles: pathDest + '/css/',
+        styles: pathDest + '/style/',
         js: pathDest + '/js/',
         images: pathDest + '/img/',
         fonts: pathDest + '/fonts/',
@@ -15,9 +15,9 @@ export const path = {
     src: {
         views: [pathSrc + '/views/*.pug', pathSrc + '/views/pages/*.pug'],
         styles: pathSrc + '/style/main.scss',
-        js: pathSrc + '/js/app.js',
+        js: pathSrc + '/js/main.js',
         images: pathSrc + '/img/**/*.{jpg,jpeg,png,gif,webp,svg}',
-        svgicons: pathSrc + '/svgicons/*.svg'
+        sprites: pathSrc + '/sprites/*.svg'
     },
     watch: {
         views: pathSrc + '/views/**/*.pug',
