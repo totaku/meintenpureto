@@ -1,7 +1,7 @@
 import rsync from 'gulp-rsync';
 
 export const ftp = () => {
-    return app.gulp.src(app.path.build.ftp)
+    return app.gulp.src(app.path.build.all)
         .pipe(app.plugins.plumber(
             app.plugins.notify.onError({
                 title: 'FTP',
@@ -9,7 +9,7 @@ export const ftp = () => {
             }))
         )
         .pipe(rsync({
-			root: app.path.buildFolder,
+			root: app.path.root,
 			hostname: '',
 			destination: '',
 			include: ['*.htaccess'], // Includes files to deploy

@@ -1,0 +1,15 @@
+extends layouts/default
+include helpers/mixins
+
+block variables
+    - const title = "Главная"
+
+block content
+    include chunks/header 
+
+    h1 Главная
+
+    include chunks/footer 
+
+block scripts
+    script(src="js/main.js") 
