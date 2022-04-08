@@ -10,13 +10,14 @@ import { js } from './gulp/tasks/js.js';
 import { images } from './gulp/tasks/images.js';
 import { otfToTtf, ttfToWoff, fontsStyle } from './gulp/tasks/fonts.js';
 import { sprites } from './gulp/tasks/sprites.js';
+import { zip } from './gulp/tasks/zip.js';
 
 global.app = {
+    isBuild: !process.argv.includes('--dev'),
+    isDev: process.argv.includes('--dev'),
     gulp: gulp,
     path: path,
-    plugins: plugins,
-    isBuild: process.argv.includes('build'),
-    isDev: !process.argv.includes('build')
+    plugins: plugins
 }
 
 function watcher() {
@@ -34,8 +35,10 @@ const mainTasks = gulp.series(fonts, gulp.parallel(html, scss, js, images));
 
 const dev = gulp.series(clean, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(clean, mainTasks);
+const arc = gulp.series(build, zip, clean);
 
 export { dev }
 export { build }
+export { arc }
 
 gulp.task('default', dev);
