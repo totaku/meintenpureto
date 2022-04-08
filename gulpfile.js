@@ -11,6 +11,7 @@ import { images } from './gulp/tasks/images.js';
 import { otfToTtf, ttfToWoff, fontsStyle } from './gulp/tasks/fonts.js';
 import { sprites } from './gulp/tasks/sprites.js';
 import { zip } from './gulp/tasks/zip.js';
+import { ftp } from './gulp/tasks/ftp.js';
 
 global.app = {
     isBuild: !process.argv.includes('--dev'),
@@ -21,7 +22,7 @@ global.app = {
 }
 
 function watcher() {
-    gulp.watch(path.watch.html, html)
+    gulp.watch(path.watch.html, html) // gulp.parallel(html, ftp)
     gulp.watch(path.watch.scss, scss)
     gulp.watch(path.watch.js, js)
     gulp.watch(path.watch.images, images)
@@ -36,9 +37,11 @@ const mainTasks = gulp.series(fonts, gulp.parallel(html, scss, js, images));
 const dev = gulp.series(clean, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(clean, mainTasks);
 const arc = gulp.series(build, zip, clean);
+const deploy = gulp.series(build, ftp, clean);
 
 export { dev }
 export { build }
 export { arc }
+export { deploy }
 
 gulp.task('default', dev);

@@ -10,7 +10,8 @@ export const path = {
         css: buildFolder + '/css/',
         js: buildFolder + '/js/',
         images: buildFolder + '/img/',
-        fonts: buildFolder + '/fonts/'
+        fonts: buildFolder + '/fonts/',
+        ftp: buildFolder + '/**/*.*',
     },
     src: {
         html: srcFolder + '/*.html',
