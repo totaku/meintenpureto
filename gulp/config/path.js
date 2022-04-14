@@ -13,7 +13,7 @@ export const path = {
         zip: './arc'
     },
     src: {
-        views: [pathSrc + '/views/*.pug', pathSrc + '/views/pages/*.pug'],
+        views: pathSrc + '/views/pages/*.pug',
         styles: pathSrc + '/style/main.scss',
         js: pathSrc + '/js/main.js',
         images: pathSrc + '/img/**/*.{jpg,jpeg,png,gif,webp,svg}',
