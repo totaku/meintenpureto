@@ -6,6 +6,7 @@ import webpCss from 'gulp-webpcss';
 import autoPrefixer from 'gulp-autoprefixer';
 import shorthand from 'gulp-shorthand';
 import groupCssMediaQueries from 'gulp-group-css-media-queries';
+import tildeImporter from 'node-sass-tilde-importer';
 
 const sass = gulpSass(dartSass);
 
@@ -19,7 +20,8 @@ export const styles = () => {
         )
         .pipe(app.plugins.replace(/@img\//g, '../img/'))
         .pipe(sass({
-            outputStyle: 'expanded'
+            outputStyle: 'expanded',
+            importer: tildeImporter
         }))
         .pipe(app.plugins.if(app.isBuild, groupCssMediaQueries()))
         .pipe(app.plugins.if(app.isBuild, webpCss({

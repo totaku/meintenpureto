@@ -44,6 +44,7 @@
     "gulp-webp-html-nosvg": "^1.0.6",
     "gulp-webpcss": "^1.1.1",
     "gulp-zip": "^5.1.0",
+    "node-sass-tilde-importer": "^1.0.2",
     "sass": "^1.50.0",
     "swiper": "^8.0.7",
     "vinyl-ftp": "^0.6.1",
