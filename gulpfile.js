@@ -12,6 +12,7 @@ import { otfToTtf, ttfToWoff, fontsStyle } from './gulp/tasks/fonts.js';
 import { sprites } from './gulp/tasks/sprites.js';
 import { zip } from './gulp/tasks/zip.js';
 import { ftp } from './gulp/tasks/ftp.js';
+import { favicon } from './gulp/tasks/favicon.js';
 
 global.app = {
     isBuild: !process.argv.includes('--dev'),
@@ -26,13 +27,14 @@ function watcher() {
     gulp.watch(path.watch.styles, styles)
     gulp.watch(path.watch.js, js)
     gulp.watch(path.watch.images, images)
+    gulp.watch(path.watch.favicon, favicon)
 }
 
 export { sprites }
 
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle)
 
-const mainTasks = gulp.series(fonts, gulp.parallel(views, styles, js, images));
+const mainTasks = gulp.series(fonts, gulp.parallel(views, styles, js, images, favicon));
 
 const dev = gulp.series(clean, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(clean, mainTasks);
