@@ -45,5 +45,7 @@ export { dev }
 export { build }
 export { arc }
 export { deploy }
+export { fonts }
+export { clean }
 
 gulp.task('default', dev);
